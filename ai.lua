@@ -14,6 +14,7 @@ end
 
 function AI:update(dt)
     self:move(dt)
+    self:boundaries()
     self.timer = self.timer + dt
     if self.timer > self.rate then
         self.timer = 0
@@ -45,3 +46,10 @@ end
 
 
 
+function AI:boundaries()
+    if self.y < 0 then
+        self.y = 0
+    elseif self.y + self.height > love.graphics.getHeight() then
+        self.y = love.graphics.getHeight() - self.height
+    end
+end
